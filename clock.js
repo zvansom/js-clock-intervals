@@ -7,11 +7,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
   setInterval(function() {
     second.style.transform = "rotate(" + seconds++ + "deg)";
-  }, 100)
+  }, 10)
   setInterval(function() {
     minute.style.transform = "rotate(" + minutes++ + "deg)";
-  }, 200)
+  }, 50)
   setInterval(function() {
     hour.style.transform = "rotate(" + hours++ + "deg)";
-  }, 300)
+  }, 100)
 });
