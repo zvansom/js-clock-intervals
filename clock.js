@@ -1,3 +1,4 @@
+var INTERVAL_DELAY = 1000;
 var SHOW_REAL_TIME = true;
 
 var SECONDS_IN_MINUTE = 60;
@@ -8,7 +9,7 @@ var SECONDS_IN_12_HOURS = 12 * SECONDS_IN_HOUR;
 var TIME = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
-  setInterval(tick, 0);
+  setInterval(tick, INTERVAL_DELAY);
 });
 
 function tick() {
