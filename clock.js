@@ -1,43 +1,54 @@
-var SECONDS = 0;
-var MINUTES = 0;
-var HOURS = 0;
+var SHOW_REAL_TIME = true;
+
+var SECONDS_IN_MINUTE = 60;
+var SECONDS_IN_HOUR = 60 * SECONDS_IN_MINUTE;
+var SECONDS_IN_12_HOURS = 12 * SECONDS_IN_HOUR;
+
+// current time in seconds
+var TIME = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
   setInterval(tick, 0);
 });
 
 function tick() {
-  SECONDS++;
-  if (SECONDS === 60) {
-    SECONDS = 0;
-    MINUTES++;
-    if (MINUTES === 60) {
-      MINUTES = 0;
-      HOURS++;
+  if (SHOW_REAL_TIME) {
+    // get the actual time
+    var now = new Date();
 
-      if (HOURS === 12) {
-        HOURS = 0;
-      }
-    }
+    // reset current time to zero
+    TIME = 0;
+
+    // add up all the seconds for now's actual time.
+    TIME += now.getMilliseconds() / 1000;
+    TIME += now.getSeconds();
+    TIME += 60 * now.getMinutes();
+    TIME +=  60 * 60 * now.getHours();
+  } else {
+    TIME++;
+    TIME = TIME % SECONDS_IN_12_HOURS;
   }
 
   rotateClock();
 }
 
 function rotateClock() {
-  second.style.transform = "rotate(" + degreesSeconds(SECONDS) + "deg)";
-  minute.style.transform = "rotate(" + degreesMinutes(MINUTES) + "deg)";
-  hour.style.transform = "rotate(" + degreesHours(HOURS) + "deg)";
+  second.style.transform = "rotate(" + degreesSeconds(TIME) + "deg)";
+  minute.style.transform = "rotate(" + degreesMinutes(TIME) + "deg)";
+  hour.style.transform = "rotate(" + degreesHours(TIME) + "deg)";
 }
 
 function degreesSeconds(seconds) {
-  return seconds / 60 * 360;
+  var percent = seconds / SECONDS_IN_MINUTE * 360;
+  return Math.round(percent);
 }
 
-function degreesMinutes(minutes) {
-  return minutes / 60 * 360;
+function degreesMinutes(seconds) {
+  var percent = seconds / SECONDS_IN_HOUR * 360;
+  return Math.round(percent);
 }
 
-function degreesHours(hours) {
-  return hours / 12 * 360;
+function degreesHours(seconds) {
+  var percent = seconds / SECONDS_IN_12_HOURS * 360;
+  return Math.round(percent);
 }
