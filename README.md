@@ -52,8 +52,12 @@ time.
 var now = new Date();
 ```
 
-Get `now` by declaring a new Date object. Investigate
-what useful functions the Date object has attached to it.
+Get `now` by declaring a new Date object. You can google for "MDN date methods" to see what
+helpful methods are attached to Date objects. There's helpful things like `.getMonth()`, `.getSeconds()`
+and who knows what else!
+
+See the full list of methods in the left sidebar on this site:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 
 ## Licensing
 All content is licensed under a CC­BY­NC­SA 4.0 license.
